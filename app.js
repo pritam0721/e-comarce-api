@@ -18,6 +18,7 @@ const connectDB = require('./db/connect')
 
 // ROUTES
 const authRoutes = require('./routes/authRoutes')
+const userRoutes = require('./routes/userRoutes')
 
 
 //ERROR HANDALAER MIDDLEWARE
@@ -44,6 +45,7 @@ app.get("/api/v1", (req, res) => {
 });
 
 app.use("/api/v1/auth",authRoutes);
+app.use("/api/v1/users",userRoutes);
 
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleware);
