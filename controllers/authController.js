@@ -2,7 +2,7 @@ const User = require("../models/User");
 const { StatusCodes } = require("http-status-codes");
 const CutsomError = require("../errors");
 
-const { attachCookiesToResponse,} = require("../utils");
+const { attachCookiesToResponse, createTokenUser } = require("../utils");
 
 //! Register as a user 
 
@@ -20,7 +20,7 @@ const register = async (req, res) => {
 
   const user = await User.create({ name, email, password, role });
 
-  const tokenUser = { name: user.name, userId: user._id, role: user.role };
+  const tokenUser = createTokenUser(user);
 
   attachCookiesToResponse({ res, user: tokenUser });
 
@@ -46,7 +46,7 @@ if(!user){
   if(!isPasswordCorrect){
     throw new CutsomError.UnauthenticatedError('the password dose not match')
   }
-    const tokenUser = { name: user.name, userId: user._id, role: user.role };
+    const tokenUser = createTokenUser(user);
 
 attachCookiesToResponse({ res, user:tokenUser });
 
