@@ -11,6 +11,11 @@ const app = express();
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const fileupload = require("express-fileupload");
+const rateLimiter = require("express-rate-limit");
+const helmet = require("helmet");
+const xss = require("xss");
+const cors = require("cors");
+const mongoSanitize = require("express-mongo-sanitize");
 
 // DATABASE CONNECTION
 
@@ -21,6 +26,7 @@ const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const productRouter = require("./routes/productRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
+const orderRouter = require("./routes/orderRoutes");
 
 //ERROR HANDALAER MIDDLEWARE
 
@@ -29,16 +35,25 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 
 //BASIC MIDDLEWARE
 
-app.use(morgan("tiny"));
+app.set("trust proxy ", 1);
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 60,
+  })
+);
+
+app.use(helmet());
+app.use(cors());
+app.use(xss());
+app.use(mongoSanitize());
+
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
 app.use(express.static("./public"));
 app.use(fileupload());
 
-app.get("/", (req, res) => {
-  res.send("e commarace api ");
-});
 
 app.get("/api/v1", (req, res) => {
   console.log(req.signedCookies);
@@ -49,6 +64,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/reviews", reviewRouter);
+app.use("/api/v1/orders", orderRouter);
 
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleware);

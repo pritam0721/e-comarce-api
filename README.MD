@@ -183,17 +183,17 @@
 
 #### Product Structure
 
-- [] add productController file in controllers
-- [] export (createProduct, getAllProducts,
+- [x] add productController file in controllers
+- [x] export (createProduct, getAllProducts,
   getSingleProduct, updateProduct, deleteProduct, uploadImage) functions
-- [] res.send('function name')
-- [] setup productRoutes file in routes
-- [] import all controllers
-- [] only getAllProducts and getSingleProduct accessible to public
-- [] rest only by admin (setup middlewares)
-- [] typical setup
-- [] router.route('/uploadImage').post(uploadImage)
-- [] import productRoutes as productRouter in the app.js
+- [x] res.send('function name')
+- [x] setup productRoutes file in routes
+- [x] import all controllers
+- [x] only getAllProducts and getSingleProduct accessible to public
+- [x] rest only by admin (setup middlewares)
+- [x] typical setup
+- [x] router.route('/uploadImage').post(uploadImage)
+- [x] import productRoutes as productRouter in the app.js
 - [x] setup app.use('/api/v1/products', productRouter)
 
 #### Product Routes in Postman
@@ -286,40 +286,40 @@
 
 #### Order Schema
 
-- [] create Order.js in models folder
-- [] create Schema
-- [] tax : {type:Number}
-- [] shippingFee: {type:Number}
-- [] subtotal: {type:Number}
-- [] total: {type:Number}
-- [] orderItems:[]
-- [] status:{type:String}
-- [] user
-- [] clientSecret:{type:String}
-- [] paymentId:{type:String}
-- [] set timestamps
-- [] export Order model
+- [x] create Order.js in models folder
+- [x] create Schema
+- [x] tax : {type:Number}
+- [x] shippingFee: {type:Number}
+- [x] subtotal: {type:Number}
+- [x] total: {type:Number}
+- [x] orderItems:[]
+- [x] status:{type:String}
+- [x] user
+- [x] clientSecret:{type:String}
+- [x] paymentId:{type:String}
+- [x] set timestamps
+- [x] export Order model
 
 #### Order Structure
 
-- [] add orderController file in controllers
-- [] export (getAllOrders, getSingleOrder, getCurrentUserOrders,
+- [x] add orderController file in controllers
+- [x] export (getAllOrders, getSingleOrder, getCurrentUserOrders,
   createOrder, updateOrder) functions
-- [] res.send('function name')
-- [] setup orderRoutes file in routes
-- [] import all controllers
-- [] authenticate user in all routes
-- [] getAllOrders admin only
-- [] typical REST setup
-- [] router.route('/showAllMyOrders').get(getCurrentUserOrders)
-- [] import orderRoutes as orderRouter in the app.js
-- [] setup app.use('/api/v1/orders', orderRouter)
+- [x] res.send('function name')
+- [x] setup orderRoutes file in routes
+- [x] import all controllers
+- [x] authenticate user in all routes
+- [x] getAllOrders admin only
+- [x] typical REST setup
+- [x] router.route('/showAllMyOrders').get(getCurrentUserOrders)
+- [x] import orderRoutes as orderRouter in the app.js
+- [x] setup app.use('/api/v1/orders', orderRouter)
 
 #### Order in Postman
 
 #### Create Order
 
-- [] most complex
+- [x] most complex
 
 #### Get All Orders and Get Single Order
 
@@ -345,6 +345,7 @@
 - [] [Docgen Library] (https://github.com/thedevsaddam/docgen)
 - [] Export Postman Collection
 - [] docgen build -i fileName.json -o index.html
+windows_amd64 build -i API.postman_collection.json -o index.html
 - [] create index.html in public
 
 #### Security Packages

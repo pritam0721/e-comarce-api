@@ -17,7 +17,7 @@ const getAllProducts = async (req, res) => {
 
 const getSingleProduct = async (req, res) => {
   const { id: productId } = req.params;
-  const product = await Product.findOne({ _id: productId });
+  const product = await Product.findOne({ _id: productId }).populate('reviews');
   if (!product) {
     throw new CustomErrror.NotFoundError(`No product with ${productId}`);
   }
@@ -84,12 +84,3 @@ module.exports = {
   uploadImage,
 };
 
-// ProductSchema.pre(
-//   "deleteOne",
-//   { document: true, query: false },
-//   async function (next) {
-//     await this.model("Review").deleteMany({
-//       product: this._id,
-//     });
-//   }
-// );
